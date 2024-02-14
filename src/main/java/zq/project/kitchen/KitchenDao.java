@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface KitchenDao {
 
-	@Select("select * from `Kitchen_MENU`")
+//	@Select("select * from `Kitchen_MENU`")
 	KitchenMenu get();
 
 }
