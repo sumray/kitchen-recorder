@@ -4,7 +4,7 @@
 
 <mapper namespace="zq.project.kitchen.KitchenDao">
 
-    <select id="get" resultType="zq.project.kitchen.KitchenMenu">
+    <select id="get" resultType="KitchenMenu">
         select * from `KITCHEN_MENU`
     </select>
 

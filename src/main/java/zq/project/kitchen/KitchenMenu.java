@@ -1,5 +1,8 @@
 package zq.project.kitchen;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("KitchenMenu")
 public class KitchenMenu {
 
 	private Long id;
