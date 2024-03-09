@@ -2,6 +2,7 @@ package zq.project.mybatis;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
@@ -23,8 +24,14 @@ public class MybatisUpdateInterceptor implements Interceptor {
 	@Override
 	public Object intercept(Invocation invocation) throws Throwable {
 		Method method = invocation.getMethod();
+		MappedStatement ms = (MappedStatement) invocation.getArgs()[0];
+		if (ms.getSqlCommandType() != SqlCommandType.INSERT) {
+			return invocation.proceed();
+		}
 		BaseEntity entity = (BaseEntity) invocation.getArgs()[1];
-		entity.setId(idGenerator.generate());
+		if (entity.getId() == null) {
+			entity.setId(idGenerator.generate());
+		}
 		return method.invoke(invocation.getTarget(), invocation.getArgs());
 	}
 
