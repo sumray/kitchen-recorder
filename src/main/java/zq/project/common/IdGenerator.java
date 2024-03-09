@@ -1,7 +1,6 @@
 package zq.project.common;
 
-import org.springframework.stereotype.Component;
-
+@SuppressWarnings("all")
 public class IdGenerator {
 
 	public static final String WORKER_ID_PROP = "qiyuesuo.worker.id";
