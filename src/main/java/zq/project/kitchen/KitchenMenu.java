@@ -1,21 +1,12 @@
 package zq.project.kitchen;
 
 import org.apache.ibatis.type.Alias;
+import zq.project.common.BaseEntity;
 
 @Alias("KitchenMenu")
-public class KitchenMenu {
-
-	private Long id;
+public class KitchenMenu extends BaseEntity {
 
 	private String name;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

@@ -14,7 +14,6 @@ public class AccountService {
 
 	public void create(String account, AccountBindingType bindingType, String telephone, String email, Date updateTime) {
 		Account toDb = new Account();
-		toDb.setId(2L);
 		toDb.setAccount(account);
 		toDb.setBindingType(bindingType);
 		toDb.setTelephone(telephone);

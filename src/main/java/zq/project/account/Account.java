@@ -1,13 +1,12 @@
 package zq.project.account;
 
 import org.apache.ibatis.type.Alias;
+import zq.project.common.BaseEntity;
 
 import java.util.Date;
 
 @Alias("Account")
-public class Account {
-
-	private Long id;
+public class Account extends BaseEntity {
 
 	private String account;   // 邮箱或手机号
 
@@ -22,14 +21,6 @@ public class Account {
 	private Date createTime;
 
 	private Date updateTime;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getAccount() {
 		return account;
