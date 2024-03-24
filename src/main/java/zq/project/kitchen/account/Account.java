@@ -1,11 +1,11 @@
-package zq.project.account;
+package zq.project.kitchen.account;
 
 import org.apache.ibatis.type.Alias;
-import zq.project.common.BaseEntity;
+import zq.project.kitchen.common.BaseEntity;
 
 import java.util.Date;
 
-@Alias("Account")
+@Alias("account")
 public class Account extends BaseEntity {
 
 	private String account;   // 邮箱或手机号

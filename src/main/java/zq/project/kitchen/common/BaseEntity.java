@@ -1,4 +1,4 @@
-package zq.project.common;
+package zq.project.kitchen.common;
 
 public class BaseEntity {
 

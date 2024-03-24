@@ -1,4 +1,4 @@
-package zq.project.common;
+package zq.project.kitchen.common;
 
 @SuppressWarnings("all")
 public class IdGenerator {

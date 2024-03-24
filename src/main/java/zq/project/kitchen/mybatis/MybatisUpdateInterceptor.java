@@ -1,4 +1,4 @@
-package zq.project.mybatis;
+package zq.project.kitchen.mybatis;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -9,8 +9,8 @@ import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Signature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import zq.project.common.BaseEntity;
-import zq.project.common.IdGenerator;
+import zq.project.kitchen.common.BaseEntity;
+import zq.project.kitchen.common.IdGenerator;
 
 import java.lang.reflect.Method;
 

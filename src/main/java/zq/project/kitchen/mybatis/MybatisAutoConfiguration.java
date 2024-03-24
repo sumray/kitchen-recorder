@@ -1,9 +1,9 @@
-package zq.project.mybatis;
+package zq.project.kitchen.mybatis;
 
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import zq.project.common.IdGenerator;
+import zq.project.kitchen.common.IdGenerator;
 
 @Configuration
 public class MybatisAutoConfiguration {

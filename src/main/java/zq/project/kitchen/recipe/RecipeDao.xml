@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zq.project.kitchen.KitchenDao">
+<mapper namespace="zq.project.kitchen.recipe.RecipeDao">
 
-    <select id="get" resultType="KitchenMenu">
-        select * from `KITCHEN_MENU`
+    <select id="get" resultType="recipe">
+        select * from `RECIPE`
     </select>
 
 </mapper>

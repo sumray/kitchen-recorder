@@ -1,4 +1,4 @@
-package zq.project.account;
+package zq.project.kitchen.account;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
