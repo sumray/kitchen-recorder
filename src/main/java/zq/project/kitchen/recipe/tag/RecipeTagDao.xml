@@ -4,8 +4,14 @@
 
 <mapper namespace="zq.project.kitchen.recipe.tag.RecipeTagDao">
 
-    <select id="get" resultType="RecipeTag">
-        select * from `RECIPE`
+    <insert id="createIfNotExist" parameterType="RecipeTag">
+        INSERT INTO `RECIPE_TAG`(id, name, createTime)
+        values(#{id},#{name},#{createTime})
+    </insert>
+
+    <select id="getByName" resultType="RecipeTag">
+        select * from `RECIPE_TAG`
+        where name = #{name}
     </select>
 
 </mapper>

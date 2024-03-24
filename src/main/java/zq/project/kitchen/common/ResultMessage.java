@@ -2,13 +2,13 @@ package zq.project.kitchen.common;
 
 public class ResultMessage<T> {
 
-	private static final int SUCCESS_CODE = 0;
+	public static final int SUCCESS_CODE = 0;
 
-	private static final int DEFAULT_ERR_CODE = 100;
+	public static final int DEFAULT_ERR_CODE = 100;
 
-	private static final String SUCCESS_MSG = "SUCCESS";
+	public static final String SUCCESS_MSG = "SUCCESS";
 
-	private static final String DEFAULT_ERR_MSG = "ERROR";
+	public static final String DEFAULT_ERR_MSG = "ERROR";
 
 	private int code;
 
@@ -28,6 +28,18 @@ public class ResultMessage<T> {
 
 	public static <T> ResultMessage<T> success(T t) {
 		return new ResultMessage<>(SUCCESS_CODE, SUCCESS_MSG, t);
+	}
+
+	public static <T> ResultMessage<T> error() {
+		return new ResultMessage<>(DEFAULT_ERR_CODE, DEFAULT_ERR_MSG, null);
+	}
+
+	public static <T> ResultMessage<T> error(String reason) {
+		return new ResultMessage<>(DEFAULT_ERR_CODE, reason, null);
+	}
+
+	public static <T> ResultMessage<T> error(int code, String reason) {
+		return new ResultMessage<>(code, reason, null);
 	}
 
 	public int getCode() {

@@ -4,6 +4,12 @@
 
 <mapper namespace="zq.project.kitchen.recipe.RecipeDao">
 
+    <insert id="create" parameterType="recipe">
+        INSERT INTO `RECIPE`(id, name, tags, ingredients, processDesc, createTime, updateTime)
+        VALUES(#{id},#{account},#{bindingType},#{telephone},
+               #{email},#{status},#{createTime},#{updateTime})
+    </insert>
+
     <select id="get" resultType="recipe">
         select * from `RECIPE`
     </select>

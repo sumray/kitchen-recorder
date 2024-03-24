@@ -2,11 +2,14 @@ package zq.project.kitchen.recipe;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import zq.project.kitchen.common.ResultMessage;
+import zq.project.kitchen.exception.BaseException;
 
 @RestController
 @RequestMapping("/recipe")
@@ -16,10 +19,37 @@ public class RecipeController {
 	private RecipeService recipeService;
 
 	@PostMapping("/create")
-	public ResultMessage<Recipe> create() {
-		return ResultMessage.success(recipeService.get());
+	public ResultMessage<Void> create(CreateRecipeRequest request) {
+		validate(request);
+		recipeService.create(request);
+		return ResultMessage.success();
 	}
 
+	private void validate(CreateRecipeRequest request) {
+		if (!StringUtils.hasLength(request.getRecipeName())) {
+			throw new BaseException("食谱名称不可为空");
+		}
+		if (!CollectionUtils.isEmpty(request.getTagNames())) {
+			if (request.getTagNames().size() > 5) {
+				throw new BaseException("一个食谱最多只能有5个标签");
+			}
+			if (request.getTagNames().stream().anyMatch(s -> s.length() > 10)) {
+				throw new BaseException("标签长度不能超过10个字");
+			}
+		}
+		if (!StringUtils.hasLength(request.getIngredients())) {
+			throw new BaseException("食材不可为空");
+		}
+		if (request.getIngredients().length() > 150) {
+			throw new BaseException("食材描述请小于150字");
+		}
+		if (!StringUtils.hasLength(request.getProcessDesc())) {
+			throw new BaseException("请描述制作过程");
+		}
+		if (request.getProcessDesc().length() > 2000) {
+			throw new BaseException("食材描述请小于2000字");
+		}
+	}
 
 	@GetMapping("/get")
 	public ResultMessage<Recipe> getMenus() {

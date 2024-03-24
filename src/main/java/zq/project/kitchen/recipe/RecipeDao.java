@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @Mapper
 public interface RecipeDao {
 
+	void create(Recipe param);
+
 	Recipe get();
 
 }
