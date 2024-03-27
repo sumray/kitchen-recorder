@@ -4,10 +4,8 @@ package zq.project.kitchen.recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import zq.project.kitchen.common.PageResult;
 import zq.project.kitchen.common.ResultMessage;
 import zq.project.kitchen.exception.BaseException;
 
@@ -19,7 +17,7 @@ public class RecipeController {
 	private RecipeService recipeService;
 
 	@PostMapping("/create")
-	public ResultMessage<Void> create(CreateRecipeRequest request) {
+	public ResultMessage<Void> create(@RequestBody CreateRecipeRequest request) {
 		validate(request);
 		recipeService.create(request);
 		return ResultMessage.success();
@@ -29,9 +27,12 @@ public class RecipeController {
 		if (!StringUtils.hasLength(request.getRecipeName())) {
 			throw new BaseException("食谱名称不可为空");
 		}
+		if (request.getMode() == null) {
+			throw new BaseException("请设置分享模式");
+		}
 		if (!CollectionUtils.isEmpty(request.getTagNames())) {
-			if (request.getTagNames().size() > 5) {
-				throw new BaseException("一个食谱最多只能有5个标签");
+			if (request.getTagNames().size() > 10) {
+				throw new BaseException("一个食谱最多只能有10个标签");
 			}
 			if (request.getTagNames().stream().anyMatch(s -> s.length() > 10)) {
 				throw new BaseException("标签长度不能超过10个字");
@@ -51,9 +52,9 @@ public class RecipeController {
 		}
 	}
 
-	@GetMapping("/get")
-	public ResultMessage<Recipe> getMenus() {
-		return ResultMessage.success(recipeService.get());
+	@PostMapping("/mine")
+	public ResultMessage<PageResult<Recipe>> getMyRecipe(@RequestBody PageQueryRecipeRequest request) {
+		return ResultMessage.success(recipeService.pageQueryRecipes(request));
 	}
 
 }

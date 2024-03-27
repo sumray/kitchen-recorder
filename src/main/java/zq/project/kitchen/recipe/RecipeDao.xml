@@ -5,13 +5,38 @@
 <mapper namespace="zq.project.kitchen.recipe.RecipeDao">
 
     <insert id="create" parameterType="recipe">
-        INSERT INTO `RECIPE`(id, name, tags, ingredients, processDesc, createTime, updateTime)
-        VALUES(#{id},#{account},#{bindingType},#{telephone},
-               #{email},#{status},#{createTime},#{updateTime})
+        INSERT INTO `RECIPE`(id, name, tags, mode, ingredients, processDesc, createTime, updateTime)
+        VALUES(#{id},#{name},#{tags},#{mode},
+               #{ingredients},#{processDesc},#{createTime},#{updateTime})
     </insert>
+
+    <select id="queryCount" resultType="long">
+        select count(*) from `RECIPE`
+        <include refid="whereSql" />
+    </select>
+
+    <select id="queryRecipes" resultType="recipe">
+        select * from `RECIPE`
+        <include refid="whereSql" />
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
 
     <select id="get" resultType="recipe">
         select * from `RECIPE`
     </select>
+
+    <sql id="whereSql">
+        <where>
+            <if test="name != null">
+                and name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="startCreateTime != null">
+                and createTime &gt;= #{startCreateTime}
+            </if>
+            <if test="endCreateTime != null">
+                and createTime &lt;= #{endCreateTime}
+            </if>
+        </where>
+    </sql>
 
 </mapper>

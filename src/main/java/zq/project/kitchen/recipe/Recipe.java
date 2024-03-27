@@ -6,6 +6,7 @@ import zq.project.kitchen.common.BaseEntity;
 
 import java.util.Date;
 
+// TODO 接口实现alias
 @Alias("Recipe")
 public class Recipe extends BaseEntity {
 

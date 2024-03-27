@@ -2,8 +2,8 @@ package zq.project.kitchen.recipe;
 
 public enum RecipeMode {
 
-	personal,       // 私有
+	PERSONAL,       // 私有
 
-	sharing;        // 公共
+	SHARED;        // 公共
 
 }
